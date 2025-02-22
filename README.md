@@ -90,7 +90,3 @@ vercel deploy --prod
 ## License
 
 This project is licensed under the ----- License.
-
-## Author
-
-Imon Chakraborty - [GitHub Profile](https://github.com/ImonChakraborty)
