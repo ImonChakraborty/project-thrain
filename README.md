@@ -89,4 +89,4 @@ vercel deploy --prod
 
 ## License
 
-This project is licensed under the ----- License.
+This project is licensed under the MIT License.
