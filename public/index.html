@@ -3,6 +3,7 @@
 
 <head>
     <title>Thrain - The Hidden Resource Access Info Network</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,63 +14,105 @@
         }
 
         body {
-            background: #1a1a1a;
+            background: #121212;
+            /* Darker background */
             color: #e0e0e0;
             padding: 20px;
             min-height: 100vh;
+            display: flex;
+            /* For centering container */
+            align-items: center;
+            /* For centering container */
+            justify-content: center;
+            /* For centering container */
         }
 
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #2d2d2d;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            /* Responsive width */
+            max-width: 1100px;
+            /* Max width */
+            margin: 20px auto;
+            /* Centering and spacing */
+            background: #1e1e1e;
+            /* Slightly lighter card background */
+            padding: 20px;
+            /* Adjusted padding */
+            border-radius: 16px;
+            /* Softer corners */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            /* Enhanced shadow */
         }
 
         h1 {
             text-align: center;
-            color: #4A90E2;
+            color: #60A5FA;
+            /* Lighter blue */
             margin-bottom: 30px;
-            font-size: 2em;
+            font-size: 2.25em;
+            /* Larger title */
         }
 
         #loginForm {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            max-width: 400px;
-            margin: 0 auto;
+            gap: 20px;
+            /* Increased gap */
+            max-width: 450px;
+            /* Slightly wider form */
+            margin: 30px auto;
+            /* More margin */
         }
 
         input {
-            padding: 12px;
-            border: 1px solid #404040;
-            border-radius: 6px;
-            font-size: 16px;
-            background: #333;
+            padding: 15px;
+            /* Larger padding */
+            border: 1px solid #333;
+            /* Softer border */
+            border-radius: 8px;
+            /* Softer corners */
+            font-size: 1em;
+            /* Relative font size */
+            background: #2a2a2a;
+            /* Input background */
             color: #e0e0e0;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #60A5FA;
+            /* Highlight on focus */
         }
 
         input::placeholder {
-            color: #808080;
+            color: #777;
+            /* Lighter placeholder */
         }
 
         button {
-            padding: 12px 20px;
-            background: #4A90E2;
+            padding: 15px 20px;
+            /* Larger padding */
+            background: #60A5FA;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s;
+            font-size: 1em;
+            font-weight: 500;
+            /* Medium weight */
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         button:hover {
-            background: #357ABD;
+            background: #3B82F6;
+            /* Darker blue on hover */
             transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+            /* Click effect */
         }
 
         #uploadSection {
@@ -78,55 +121,77 @@
 
         .grid-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            grid-template-columns: 1fr;
+            /* Default to single column */
+            gap: 25px;
+            /* Adjusted gap */
             margin-top: 30px;
         }
 
+        /* Responsive grid for larger screens */
+        @media (min-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr 1fr;
+                /* Two columns on tablets and desktops */
+            }
+        }
+
+
         .upload-section,
         .files-section {
-            background: #363636;
+            background: #242424;
+            /* Section background */
             padding: 25px;
             border-radius: 12px;
         }
 
         .section-title {
-            color: #4A90E2;
+            color: #60A5FA;
             margin-bottom: 20px;
-            font-size: 1.2em;
+            font-size: 1.5em;
+            /* Larger section title */
             text-align: center;
+            font-weight: 600;
         }
 
         #dropZone {
             width: 100%;
-            min-height: 200px;
-            border: 2px dashed #4A90E2;
+            min-height: 220px;
+            /* Slightly taller */
+            border: 3px dashed #60A5FA;
+            /* Thicker, themed border */
             border-radius: 12px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            margin: 20px 0;
-            background: #2d2d2d;
-            transition: all 0.3s;
+            margin: 25px 0;
+            background: #1e1e1e;
+            /* Match container background */
+            transition: background-color 0.3s, border-color 0.3s;
         }
 
         #dropZone.dragover {
-            background: #404040;
-            border-color: #5AA1F2;
+            background: #2a2a2a;
+            /* Darker on dragover */
+            border-color: #3B82F6;
+            /* Darker blue on dragover */
         }
 
         .upload-text {
-            color: #b0b0b0;
-            margin: 10px 0;
+            color: #aaa;
+            /* Lighter text */
+            margin: 15px 0;
             text-align: center;
+            font-size: 1.1em;
         }
 
         .or-divider {
             text-align: center;
-            margin: 15px 0;
-            color: #808080;
+            margin: 20px 0;
+            color: #777;
+            font-size: 0.9em;
         }
 
         #fileInput {
@@ -135,91 +200,219 @@
 
         .file-item {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px;
-            background: #2d2d2d;
-            border-radius: 6px;
-            margin-bottom: 10px;
+            flex-direction: column;
+            /* Stack items vertically on small screens */
+            gap: 10px;
+            /* Space between name and actions */
+            align-items: flex-start;
+            /* Align items to the start */
+            padding: 15px;
+            background: #2a2a2a;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            transition: background-color 0.3s;
+        }
+
+        .file-item:hover {
+            background-color: #333;
+            /* Hover effect */
+        }
+
+        /* Responsive file item for larger screens */
+        @media (min-width: 500px) {
+            .file-item {
+                flex-direction: row;
+                /* Row layout on larger screens */
+                align-items: center;
+                /* Center items in row */
+                justify-content: space-between;
+            }
         }
 
         .file-name {
             color: #e0e0e0;
-            flex-grow: 1;
+            flex: 1;
+            /* Use flex: 1 instead of flex-grow: 1 for better space allocation */
             margin-right: 15px;
             white-space: nowrap;
+            /* Keep text on single line */
             overflow: hidden;
+            /* Hide overflow */
             text-overflow: ellipsis;
+            /* Show ellipsis for long names */
+            font-size: 1em;
+            min-width: 0;
+            /* Allow shrinking below content size */
         }
 
         .status-message {
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 6px;
+            padding: 12px;
+            /* Adjusted padding */
+            margin: 15px 0;
+            /* Adjusted margin */
+            border-radius: 8px;
             display: none;
+            text-align: center;
+            font-size: 0.95em;
         }
 
         .success {
-            background: #1e4a3d;
-            color: #4ade80;
+            background: #10B981;
+            /* Tailwind green-500 */
+            color: #065F46;
+            /* Darker green text for contrast */
             display: block;
         }
 
         .error {
-            background: #4c1d1d;
-            color: #f87171;
+            background: #F87171;
+            /* Tailwind red-400 */
+            color: #7F1D1D;
+            /* Darker red text for contrast */
             display: block;
         }
 
         #clearFiles {
-            background: #dc2626;
+            background: #EF4444;
+            /* Tailwind red-500 */
             width: 100%;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         #clearFiles:hover {
-            background: #b91c1c;
+            background: #DC2626;
+            /* Tailwind red-600 */
         }
 
         .logout {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #6B7280;
+            top: 25px;
+            /* Adjusted position */
+            right: 25px;
+            /* Adjusted position */
+            background: #4B5563;
+            /* Tailwind gray-600 */
         }
 
         .logout:hover {
+            background: #374151;
+            /* Tailwind gray-700 */
+        }
+
+        .refresh {
+            position: absolute;
+            top: 25px;
+            /* Adjusted position */
+            left: 25px;
+            /* Positioned on the left */
             background: #4B5563;
+            /* Tailwind gray-600 */
+        }
+
+        .refresh:hover {
+            background: #374151;
+            /* Tailwind gray-700 */
+        }
+
+        .refresh {
+            position: absolute;
+            top: 25px;
+            /* Adjusted position */
+            left: 25px;
+            /* Left side position */
+            background: #10B981;
+            /* Tailwind green-500 */
+            width: auto;
+            /* Override default button width */
+            padding: 15px 20px;
+            /* Match logout button padding */
+        }
+
+        .refresh:hover {
+            background: #059669;
+            /* Tailwind green-600 */
         }
 
         .select-file-btn {
             width: 100%;
-            background: #4A90E2;
-            margin-top: 10px;
+            background: #60A5FA;
+            /* Themed button */
+            margin-top: 15px;
+        }
+
+        .select-file-btn:hover {
+            background: #3B82F6;
         }
 
         .file-actions {
             display: flex;
-            gap: 8px;
-            margin-left: auto;
+            gap: 10px;
+            /* Increased gap */
+            flex-shrink: 0;
+            /* Prevent shrinking */
+            justify-content: flex-end;
+            /* Align buttons to the end */
         }
 
+        /* Responsive file actions for small screens */
+        @media (max-width: 499px) {
+            .file-actions {
+                flex-direction: row;
+                /* Keep buttons in a row on small screens */
+                justify-content: center;
+                /* Center the buttons */
+            }
+
+            .file-actions button {
+                width: 36px;
+                /* Maintain square shape on small screens */
+                height: 36px;
+                /* Maintain square shape on small screens */
+            }
+        }
+
+
         .file-actions button {
-            padding: 8px 16px;
-            font-size: 14px;
-            min-width: 90px;
+            padding: 8px;
+            /* Equal padding for square buttons */
+            font-size: 0.8em;
+            /* Smaller font size */
+            width: 36px;
+            /* Fixed width for square shape */
+            height: 36px;
+            /* Fixed height for square shape */
+            display: inline-flex;
+            /* Added for icon alignment */
+            align-items: center;
+            /* Added for icon alignment */
+            justify-content: center;
+            /* Added for icon alignment */
+        }
+
+        .file-actions button svg {
+            width: 16px;
+            height: 16px;
+            stroke: white;
+            /* Default stroke for icons in buttons */
         }
 
         .delete-btn {
-            background: #dc2626;
+            background: #EF4444;
+            /* Tailwind red-500 */
         }
 
         .delete-btn:hover {
-            background: #b91c1c;
+            background: #DC2626;
+            /* Tailwind red-600 */
         }
 
         svg {
-            stroke: #4A90E2;
+            stroke: #60A5FA;
+            /* Themed SVG stroke */
+            width: 60px;
+            /* Larger icon */
+            height: 60px;
+            /* Larger icon */
         }
     </style>
 </head>
@@ -236,6 +429,7 @@
         </div>
 
         <div id="uploadSection">
+            <button class="refresh" onclick="refreshFiles()">Refresh</button>
             <button class="logout" onclick="logout()">Logout</button>
 
             <div class="grid-container">
