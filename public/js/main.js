@@ -137,8 +137,16 @@ async function loadFiles() {
                 <div class="file-item">
                     <span class="file-name">${file.filename}</span>
                     <div class="file-actions">
-                        <button onclick="downloadFile(${file.id}, '${file.filename}')">Download</button>
-                        <button class="delete-btn" onclick="deleteFile(${file.id})">Delete</button>
+                        <button onclick="downloadFile(${file.id}, '${file.filename}')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                            </svg>
+                        </button>
+                        <button class="delete-btn" onclick="deleteFile(${file.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12.56 0c1.153 0 2.242.078 3.223.224M9 5.25V3.75a1.5 1.5 0 011.5-1.5h3a1.5 1.5 0 011.5 1.5v1.5m-6.75 0h6.75" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             `).join('');
@@ -229,4 +237,17 @@ async function deleteFile(fileId) {
     setTimeout(() => {
         uploadStatus.style.display = 'none';
     }, 3000);
+}
+
+function refreshFiles() {
+    if (token) {
+        loadFiles();
+        uploadStatus.textContent = 'Files refreshed';
+        uploadStatus.className = 'status-message success';
+        uploadStatus.style.display = 'block';
+        
+        setTimeout(() => {
+            uploadStatus.style.display = 'none';
+        }, 2000);
+    }
 }
